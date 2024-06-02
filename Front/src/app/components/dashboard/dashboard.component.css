@@ -1,0 +1,45 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente */
+  z-index: 1000; /* Z-index supérieur à celui du contenu */
+}
+
+.add-patient-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1001;
+}
+.patient-info-card {
+  width: 400px; /* Spécifiez la largeur souhaitée */
+  height: 300px; /* Spécifiez la hauteur souhaitée */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1001;
+}
+
+/* Ajout de marge à droite pour les boutons */
+.list-group-item button {
+  margin-right: 5px; /* Ajustez la valeur selon vos besoins */
+}
+
+/* Réduction de la taille des boutons */
+.list-group-item button.btn {
+  padding: 0.25rem 0.5rem; /* Ajustez la taille du padding selon vos besoins */
+  font-size: 0.65rem; /* Ajustez la taille de la police selon vos besoins */
+}

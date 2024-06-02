@@ -1,0 +1,74 @@
+<div class="overlay" *ngIf="addingPatient || selectedPatient || editedPatient" (click)="cancelAction()"></div>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <i class="fa fa-stethoscope fa-3x" style="color: #0fce95"></i>
+    <h2>Liste des patients</h2>
+    <button class="btn btn-primary btn-sm" (click)="addingPatient = !addingPatient">
+      <i class="fa fa-plus"></i>
+      Ajouter patient
+    </button>
+  </div>
+
+  <!-- Formulaire d'ajout de patient -->
+  <div class="add-patient-form" *ngIf="addingPatient">
+    <h3>Ajouter un nouveau patient</h3>
+    <form (submit)="submitPatient()">
+      <div class="form-group">
+        <label for="patientName">Nom du patient</label>
+        <input type="text" class="form-control" id="patientName" [(ngModel)]="newPatient.nom" name="patientName" />
+      </div>
+      <div class="form-group">
+        <label for="patientAge">Âge du patient</label>
+        <input type="number" class="form-control" id="patientAge" [(ngModel)]="newPatient.age" name="patientAge" />
+      </div>
+      <div class="form-group">
+        <label for="patientDiagnosis">Diagnostic</label>
+        <textarea class="form-control" id="patientDiagnosis" [(ngModel)]="newPatient.observation" name="patientDiagnosis" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm mr-2 mt-2">Ajouter</button>
+      <button type="button" class="btn btn-secondary btn-sm mt-2" (click)="addingPatient = false">Annuler</button>
+    </form>
+  </div>
+
+  <!-- Liste des patients -->
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let patient of patients">
+      <span>{{ patient.nom }} - {{ patient.age }} ans - {{ patient.observation }}</span>
+      <div>
+        <button class="btn btn-info btn-sm" (click)="showPatientInfo(patient)">Voir</button>
+        <button class="btn btn-warning btn-sm" (click)="editPatient(patient)">Modifier</button>
+        <button class="btn btn-danger btn-sm" (click)="deletePatient(patient)">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Affichage des informations du patient -->
+  <div class="patient-info-card" *ngIf="selectedPatient">
+    <h3 class="mt-2"><i class="fa fa-plus" style="color: #0fce95"></i>&nbsp;Détails de : {{ selectedPatient.nom }}</h3>
+    <p>Nom: <em>{{ selectedPatient.nom }}</em></p>
+    <p>Âge: <em>{{ selectedPatient.age }}</em></p>
+    <p>Diagnostic : <br /><em>{{ selectedPatient.observation }}</em></p>
+  </div>
+
+  <!-- Formulaire de modification des informations du patient -->
+  <div class="add-patient-form" *ngIf="editedPatient">
+    <h3><i class="fa fa-pencil" style="color: #0fce95"></i>&nbsp;Modifier les informations du patient</h3>
+    <form (submit)="submitEditedPatient()">
+      <div class="form-group">
+        <label for="patientName">Nom du patient</label>
+        <input type="text" class="form-control" id="patientName" [(ngModel)]="editedPatient.nom" name="patientName" />
+      </div>
+      <div class="form-group">
+        <label for="patientAge">Âge du patient</label>
+        <input type="number" class="form-control" id="patientAge" [(ngModel)]="editedPatient.age" name="patientAge" />
+      </div>
+      <div class="form-group">
+        <label for="patientDiagnosis">Diagnostic</label>
+        <textarea class="form-control" id="patientDiagnosis" [(ngModel)]="editedPatient.observation" name="patientDiagnosis" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm mt-3">Enregistrer</button>
+      <button type="button" class="btn btn-secondary btn-sm mt-3" (click)="cancelAction()">Annuler</button>
+    </form>
+  </div>
+</div>
